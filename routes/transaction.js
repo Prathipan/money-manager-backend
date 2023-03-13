@@ -11,6 +11,7 @@ router.post("/create", verifyToken, async (req, res) => {
       userId: user.id,
       name: req.body.name,
       type: req.body.type,
+      TransDate: req.body.TransDate,
       amount: req.body.amount,
     });
     const newTrans =await trans.save();
@@ -32,7 +33,7 @@ router.delete("/trans/:id",verifyToken,async(req,res) => {
 
 router.get("/get-all",verifyToken,async(req,res) => {
     const user = req.user;
-    console.log(user)
+    // console.log(user)
     try {
         const transactions = await Transaction.find({userId : user.id});
         res.status(200).json(transactions);
